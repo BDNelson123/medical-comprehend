@@ -1,0 +1,66 @@
+<form action="/comprehends" method="POST">
+  <label for="text">Text:</label><br>
+  <textarea type="text" id="text" name="text" rows="10" cols="50"></textarea>
+  <br><br>
+
+  <label for="text">Type:</label><br>
+  <select name="type" id="type">
+    <option value="detect_entities">Detect Entities</option>
+    <option value="detect_entities_v2">Detect Entities V2</option>
+    <option value="detect_phi">Detect PHI</option>
+    <option value="infer_icd10cm">Infer ICD10CM</option>
+    <option value="infer_rx_norm">Infer RX Norm</option>
+    <option value="infer_snomedct">Infer Snomedct</option>
+  </select>
+  <br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
+<% if @recent.present? %>
+  <br><br>
+  <hr>
+  <h2>Most Recent</h2>
+  <br><br>
+  <table>
+    <tr>
+      <td style="vertical-align: top;">
+        Type:
+      </td>
+      <td>
+        <%= @recent.query_type %>
+      </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+      <td style="vertical-align: top;">
+        Text
+      </td>
+      <td>
+        <%= @recent.text %>
+      </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+      <td style="vertical-align: top;">
+        Result:
+      </td>
+      <td>
+        <pre id="json">
+          <%= @recent.result %>
+        </pre>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    (function() {
+        var element = document.getElementById("json");
+        var obj = JSON.parse(element.innerText);
+        element.innerHTML = JSON.stringify(obj, undefined, 2);
+    })();
+  </script>
+<% end %>
+  

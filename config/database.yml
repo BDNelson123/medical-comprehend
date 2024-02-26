@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 20
+  username: root
+  password: root
+  prepared_statements: false
+
+development:
+  <<: *default
+  database: comprehend_development
+  host: localhost
+
+staging:
+  <<: *default
+  database: <%= ENV['DB_NAME'] %>
+  host: <%= ENV['DB_HOST'] %>
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
