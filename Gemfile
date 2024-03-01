@@ -44,6 +44,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'aws-sdk-comprehendmedical', '~> 1.49'
 gem 'pry'
 gem 'pg'
+gem 'faraday'
 
 
 

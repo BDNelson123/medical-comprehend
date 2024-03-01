@@ -1,0 +1,2 @@
+class AzureQuery < ApplicationRecord
+end
